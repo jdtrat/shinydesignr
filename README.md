@@ -11,7 +11,7 @@ The goal of shinydesignr is to make designing visually appealing Shiny user inte
 You can install the development version of shinydesignr with the following code:
 
 ``` r
-# Install/update shinysurveys with the development version from GitHub. 
+# Install/update shinydesignr with the development version from GitHub. 
 # If devtools is not installed, uncomment the line below.
 # install.packages("devtools")
 devtools::install_github("jdtrat/shinydesignr")
