@@ -1,0 +1,21 @@
+Package: shinydesignr
+Title: Rapidly design a (prototype) Shiny user interface
+Version: 0.0.0.9000
+Authors@R: 
+   c(
+    person(given = "Jonathan",
+           family = "Trattner",
+           role = c("aut", "cre"),
+           email = "code@jdtrat.com",
+           comment = c(ORCID = "0000-0002-1097-7603")),
+    person(given = "Lucy", 
+           family = c("D'Agostino McGowan"), 
+           role = c("aut"),
+           email = "mcgowald@wfu.edu")
+    )
+Description: Provides easy-to-use code for rapid prototyping of Shiny UIs either with a GUI or with code.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1.9000
