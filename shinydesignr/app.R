@@ -55,18 +55,21 @@ server <- function(input, output, session) {
     observeEvent(input$class_modal, {
 
         #if (!is.null(input$image_brush)) {
-        new_image <- magick::image_blank(width = (input$image_brush$xmax - input$image_brush$xmin),
-                                         height = (input$image_brush$ymax - input$image_brush$ymin),
-                                         color = "#d4ebf2") %>%
-            magick::image_border(color = "blue",
-                                 geometry = "2x2")
+        # new_image <- magick::image_blank(width = (input$image_brush$xmax - input$image_brush$xmin),
+        #                                  height = (input$image_brush$ymax - input$image_brush$ymin),
+        #                                  color = "#d4ebf2") %>%
+        #     magick::image_border(color = "blue",
+        #                          geometry = "2x2")
+        #
+        # updated_image <- magick::image_composite(isolate(ui_elements$preview()),
+        #                                          new_image,
+        #                                          offset = paste0("+", input$image_brush$xmin, "+", input$image_brush$ymin),
+        #                                          operator = "SrcOver")
 
-        updated_image <- magick::image_composite(isolate(ui_elements$preview()),
-                                                 new_image,
-                                                 offset = paste0("+", input$image_brush$xmin, "+", input$image_brush$ymin),
-                                                 operator = "SrcOver")
-
-        ui_elements$preview <- reactive({updated_image})
+        ui_elements$preview <- reactive({
+            update_preview(existing_preview = isolate(ui_elements$preview()),
+                           input = input)
+        })
 
     })
 
@@ -120,6 +123,10 @@ server <- function(input, output, session) {
                            textInput("slider_class_choices", "Slider Choices:")
                        ),
                        textInput("class_name", "Provide a one word description (for CSS Class)"),
+                       selectInput("class_location", "Select a location for the element relative to its border.",
+                                   choices = c("NorthWest", "North", "NorthEast",
+                                               "West", "Center", "East",
+                                               "SouthWest", "South", "SouthEast")),
                        textInput("custom_css", "Provide any custom CSS arguments.")),
                    inputId = "class_modal"
         )
